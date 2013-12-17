@@ -3,11 +3,7 @@ package org.springframework.social.foursquare.api.impl.json;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.social.foursquare.api.CheckinInfo;
-import org.springframework.social.foursquare.api.ContactInfo;
-import org.springframework.social.foursquare.api.FriendInfo;
-import org.springframework.social.foursquare.api.MayorshipInfo;
-import org.springframework.social.foursquare.api.Scores;
+import org.springframework.social.foursquare.api.*;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 abstract class FoursquareUserMixin {
@@ -17,7 +13,7 @@ abstract class FoursquareUserMixin {
 			@JsonProperty("id") String id,
 			@JsonProperty("firstName") String firstName, 
 			@JsonProperty("lastName") String lastName, 
-			@JsonProperty("photo") String photoUrl,
+			@JsonProperty("photo") UserPhoto photo,
 			@JsonProperty("gender") String gender, 
 			@JsonProperty("homeCity") String homeCity, 
 			@JsonProperty("relationship") String relationship){}

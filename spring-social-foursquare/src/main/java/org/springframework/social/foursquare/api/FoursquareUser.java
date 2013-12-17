@@ -5,7 +5,7 @@ public class FoursquareUser {
 	private final String id;
 	private final String firstName;
 	private final String lastName;
-	private final String photoUrl;
+	private final UserPhoto photo;
 	private final String gender;
 	private final String homeCity;
 	private final String relationship;
@@ -16,12 +16,12 @@ public class FoursquareUser {
 	private FriendInfo friendInfo;
 	private Scores scores;
 	
-	public FoursquareUser(String id, String firstName, String lastName, String photoUrl,
+	public FoursquareUser(String id, String firstName, String lastName, UserPhoto photo,
 			String gender, String homeCity, String relationship) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.photoUrl = photoUrl;
+		this.photo = photo;
 		this.gender = gender;
 		this.homeCity = homeCity;
 		this.relationship = relationship;
@@ -39,8 +39,8 @@ public class FoursquareUser {
 		return lastName;
 	}
 
-	public String getPhotoUrl() {
-		return photoUrl;
+	public UserPhoto getPhoto() {
+		return photo;
 	}
 
 	public String getGender() {

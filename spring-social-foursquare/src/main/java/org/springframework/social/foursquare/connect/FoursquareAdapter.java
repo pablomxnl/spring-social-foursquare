@@ -27,7 +27,7 @@ public class FoursquareAdapter implements ApiAdapter<Foursquare> {
         FoursquareUser user = foursquare.userOperations().getUser();
         values.setProviderUserId(user.getId());
         values.setDisplayName(user.getFirstName() + " " + user.getLastName());
-        values.setImageUrl(user.getPhotoUrl());
+        values.setImageUrl(user.getPhoto().getPrefix() + user.getPhoto().getSuffix());
     }
 
     public UserProfile fetchUserProfile(Foursquare instagram) {

@@ -28,7 +28,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
 	
     @Test
 	public void getUser() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self?oauth_token=ACCESS_TOKEN&v=20110609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self?oauth_token=ACCESS_TOKEN&v=20120609"))
 			.andExpect(method(GET))
 			.andRespond(withResponse(new ClassPathResource("testdata/user-profile.json", getClass()), responseHeaders));
 		

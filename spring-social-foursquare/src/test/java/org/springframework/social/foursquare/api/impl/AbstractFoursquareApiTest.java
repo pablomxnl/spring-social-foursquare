@@ -30,6 +30,7 @@ public class AbstractFoursquareApiTest {
 		assertEquals("male", profile.getGender());
 		assertEquals(3, profile.getMayorshipInfo().getTotal());
 		assertEquals(659, profile.getCheckinInfo().getTotal());
-		assertEquals("https://playfoursquare.s3.amazonaws.com/userpix_thumbs/OGGQATTYHOGWJL4E.jpg", profile.getPhotoUrl());
+		assertEquals("https://playfoursquare.s3.amazonaws.com/userpix_thumbs", profile.getPhoto().getPrefix());
+        assertEquals("/OGGQATTYHOGWJL4E.jpg", profile.getPhoto().getSuffix());
 	}
 }
