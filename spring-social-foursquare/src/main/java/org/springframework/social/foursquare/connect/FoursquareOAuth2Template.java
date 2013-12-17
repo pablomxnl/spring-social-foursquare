@@ -18,6 +18,7 @@ public class FoursquareOAuth2Template extends OAuth2Template {
 
     public FoursquareOAuth2Template(String clientId, String clientSecret) {
         super(clientId, clientSecret, "https://foursquare.com/oauth2/authenticate", "https://foursquare.com/oauth2/access_token");
+        setUseParametersForClientAuthentication(true);
     }
     
     @Override
@@ -43,7 +44,7 @@ public class FoursquareOAuth2Template extends OAuth2Template {
 		try {
 			response2 = mapper.readValue(jsonString, Map.class);
 		} catch (Exception e) {
-			
+
 		}
         return new AccessGrant(response2.get("access_token"), null, null, null);
     }
