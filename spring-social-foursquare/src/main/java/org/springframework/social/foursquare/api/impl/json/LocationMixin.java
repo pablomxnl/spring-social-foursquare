@@ -1,14 +1,15 @@
 package org.springframework.social.foursquare.api.impl.json;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 abstract class LocationMixin {
 	@JsonCreator
 	LocationMixin(
-			@JsonProperty("address") String address, 
+			@JsonProperty("address") String address,
 			@JsonProperty("crossStreet") String crossStreet, 
 			@JsonProperty("city") String city, 
 			@JsonProperty("state") String state,

@@ -1,7 +1,7 @@
 package org.springframework.social.foursquare.api.impl.json;
 
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.module.SimpleModule;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.social.foursquare.api.AllSettings;
 import org.springframework.social.foursquare.api.Badge;
 import org.springframework.social.foursquare.api.BadgeGroup;
@@ -63,7 +63,7 @@ import org.springframework.social.foursquare.api.VenueTips;
 public class FoursquareModule extends SimpleModule {
 
 	public FoursquareModule() {
-		super(FoursquareModule.class.getName(), new Version(1, 0, 0, null));
+		super(FoursquareModule.class.getName(), new Version(1, 0, 0, null, null, null));
 	}
 	
 	@Override 

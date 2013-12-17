@@ -1,8 +1,8 @@
 package org.springframework.social.foursquare.api.impl.json;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.social.foursquare.api.CheckinInfo;
 import org.springframework.social.foursquare.api.ContactInfo;
 import org.springframework.social.foursquare.api.FriendInfo;
@@ -14,7 +14,7 @@ abstract class FoursquareUserMixin {
 	
 	@JsonCreator
 	FoursquareUserMixin(
-			@JsonProperty("id") String id, 
+			@JsonProperty("id") String id,
 			@JsonProperty("firstName") String firstName, 
 			@JsonProperty("lastName") String lastName, 
 			@JsonProperty("photo") String photoUrl,

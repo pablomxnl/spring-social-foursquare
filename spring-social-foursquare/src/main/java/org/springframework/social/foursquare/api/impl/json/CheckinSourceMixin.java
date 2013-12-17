@@ -1,11 +1,12 @@
 package org.springframework.social.foursquare.api.impl.json;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonProperty;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 abstract class CheckinSourceMixin {
 	@JsonCreator
 	CheckinSourceMixin(
-			@JsonProperty("name") String name, 
+			@JsonProperty("name") String name,
 			@JsonProperty("url") String url) {}
 }

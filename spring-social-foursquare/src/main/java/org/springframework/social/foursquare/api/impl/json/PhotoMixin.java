@@ -2,10 +2,10 @@ package org.springframework.social.foursquare.api.impl.json;
 
 import java.util.Date;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.social.foursquare.api.FoursquareUser;
 import org.springframework.social.foursquare.api.PhotoSizes;
 import org.springframework.social.foursquare.api.PhotoSource;

@@ -35,7 +35,7 @@ public abstract class AbstractFoursquareOperations {
 	
 	protected void requireUserAuthorization() {
 		if(!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException("foursquare");
 		}
 	}
 	
