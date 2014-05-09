@@ -13,13 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.springframework.social.facebook.web;
 
-rootProject.name = 'spring-social-foursquare'
+/**
+ * Exception thrown by SignedRequestDecoder when there is a problem in decoding the signed_request parameter.
+ * @author habuma
+ */
+@SuppressWarnings("serial")
+public class SignedRequestException extends Exception {
 
-include 'docs', 'docs:manual'
-def docs = findProject(':docs')
-docs.buildFileName = 'docs.gradle'
-
-include 'spring-social-foursquare'
-include 'spring-social-foursquare-web'
-
+	public SignedRequestException(String message) {
+		super(message);
+	}
+	
+	public SignedRequestException(String message, Throwable throwable) {
+		super(message, throwable);
+	}
+	
+}

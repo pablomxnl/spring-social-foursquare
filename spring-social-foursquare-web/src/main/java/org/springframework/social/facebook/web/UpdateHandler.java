@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.springframework.social.facebook.web;
 
-rootProject.name = 'spring-social-foursquare'
+/**
+ * Strategy interface for handling real time updates.
+ * Implementations can be wired into {@link RealTimeUpdateController} to receive any updates from Facebook as they arrive.
+ * @author Craig Walls
+ */
+public interface UpdateHandler {
 
-include 'docs', 'docs:manual'
-def docs = findProject(':docs')
-docs.buildFileName = 'docs.gradle'
+	public void handleUpdate(String subscription, RealTimeUpdate update);
 
-include 'spring-social-foursquare'
-include 'spring-social-foursquare-web'
-
+}
