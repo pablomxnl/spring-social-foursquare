@@ -160,22 +160,22 @@ project('spring-social-foursquare') {
     }
 }
 
-project('spring-social-foursquare-web') {
-    description = 'Foursquare Web'
-    dependencies {
-        compile ("org.springframework:spring-web:$springVersion")
-        compile ("org.springframework:spring-webmvc:$springVersion")
-        compile ("org.springframework.social:spring-social-core:$springSocialVersion", optional)
-        compile project(':spring-social-foursquare', optional)
-        compile ("org.springframework.security:spring-security-crypto:$springSecurityCryptoVersion", optional)
-        compile ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion", optional)
-        compile ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion", optional)
-        compile ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion", optional)
-        compile ("javax.servlet:javax.servlet-api:$servletApiVersion", provided)
-        compile ("javax.servlet.jsp:javax.servlet.jsp-api:$jspApiVersion", provided)
-        testCompile ("org.springframework:spring-test:$springVersion")
-    }
-}
+/* project('spring-social-foursquare-web') { */
+/*     description = 'Foursquare Web' */
+/*     dependencies { */
+/*         compile ("org.springframework:spring-web:$springVersion") */
+/*         compile ("org.springframework:spring-webmvc:$springVersion") */
+/*         compile ("org.springframework.social:spring-social-core:$springSocialVersion", optional) */
+/*         compile project(':spring-social-foursquare', optional) */
+/*         compile ("org.springframework.security:spring-security-crypto:$springSecurityCryptoVersion", optional) */
+/*         compile ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion", optional) */
+/*         compile ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion", optional) */
+/*         compile ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion", optional) */
+/*         compile ("javax.servlet:javax.servlet-api:$servletApiVersion", provided) */
+/*         compile ("javax.servlet.jsp:javax.servlet.jsp-api:$jspApiVersion", provided) */
+/*         testCompile ("org.springframework:spring-test:$springVersion") */
+/*     } */
+/* } */
 
 configure(rootProject) {
     description = 'Spring Social Foursquare'
@@ -214,18 +214,18 @@ configure(rootProject) {
         dependsOn subprojects*.tasks*.matching { task -> task.name == 'assemble' || task.name.endsWith('Zip') || task.name.endsWith('generatePom') }
         classifier = 'dist'
 
-        evaluationDependsOn(':docs')
-        evaluationDependsOn(':docs:manual')
+        /* evaluationDependsOn(':docs') */
+        /* evaluationDependsOn(':docs:manual') */
 
         def zipRootDir = "${project.name}-$version"
         into(zipRootDir) {
             from(rootDir) {
                 include '*.txt'
             }
-            into('docs') {
-                with(project(':docs').apiSpec)
-                with(project(':docs:manual').spec)
-            }
+            /* into('docs') { */
+            /*     with(project(':docs').apiSpec) */
+            /*     with(project(':docs:manual').spec) */
+            /* } */
             into('dist') {
                 from coreModuleProjects.collect {project -> project.libsDir }
             }
@@ -234,8 +234,8 @@ configure(rootProject) {
 
     artifacts {
         archives dist
-        archives project(':docs').docsZip
-        archives project(':docs').schemaZip
+        /* archives project(':docs').docsZip */
+        /* archives project(':docs').schemaZip */
     }    
 
     task wrapper(type: Wrapper) {

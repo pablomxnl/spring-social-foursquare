@@ -21,5 +21,5 @@ def docs = findProject(':docs')
 docs.buildFileName = 'docs.gradle'
 
 include 'spring-social-foursquare'
-include 'spring-social-foursquare-web'
+/* include 'spring-social-foursquare-web' */
 
