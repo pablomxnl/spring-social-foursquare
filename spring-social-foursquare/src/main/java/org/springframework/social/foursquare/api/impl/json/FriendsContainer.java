@@ -1,6 +1,6 @@
 package org.springframework.social.foursquare.api.impl.json;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.social.foursquare.api.Friends;
 
 @JsonDeserialize(using=FriendsContainerDeserializer.class)

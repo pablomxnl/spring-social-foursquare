@@ -6,9 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.social.InsufficientPermissionException;
 import org.springframework.social.InternalServerErrorException;
@@ -59,17 +59,17 @@ public class FoursquareErrorHandler extends DefaultResponseErrorHandler {
 	
 	private void handleFoursquareError(int code, String errorType, String message) {
 		if(errorType.equals("invalid_auth")) {
-			throw new NotAuthorizedException(message);
+			throw new NotAuthorizedException("foursquare", message);
 		} else if(errorType.equals("param_error")) {
 			throw new ParamErrorException(code, errorType, message);
 		} else if(errorType.equals("endpoint_error")) {
-			throw new ResourceNotFoundException(message);
+			throw new ResourceNotFoundException("foursquare", message);
 		} else if(errorType.equals("not_authorized")) {
 			throw new InsufficientPermissionException(message);
 		} else if(errorType.equals("rate_limit_exceeded")) {
-			throw new RateLimitExceededException();
+			throw new RateLimitExceededException("foursquare");
 		} else if(errorType.equals("server_error")) {
-			throw new InternalServerErrorException(message);
+			throw new InternalServerErrorException("foursquare", message);
 		}
 	}
 	

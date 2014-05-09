@@ -1,22 +1,23 @@
 package org.springframework.social.foursquare.api.impl.json;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.JsonToken;
-import org.codehaus.jackson.map.JsonDeserializer;
-import org.codehaus.jackson.type.TypeReference;
 
 public abstract class AbstractFoursquareDeserializer<T> extends JsonDeserializer<T> {
     
 	PrintStream actualStdout = new PrintStream(new FileOutputStream(FileDescriptor.out));
 	
-    public List<?> deserializeNestedList(JsonParser jp, String propertyName, TypeReference typeRef) 
+    public List<?> deserializeNestedList(JsonParser jp, String propertyName, TypeReference typeRef)
             throws IOException, JsonProcessingException {
     	while (true) {
 			String fieldname = jp.getCurrentName();

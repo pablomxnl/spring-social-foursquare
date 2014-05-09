@@ -1,8 +1,8 @@
 package org.springframework.social.foursquare.api.impl;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.social.foursquare.api.CheckinOperations;
 import org.springframework.social.foursquare.api.Foursquare;
 import org.springframework.social.foursquare.api.PhotoOperations;
@@ -67,9 +67,9 @@ public class FoursquareTemplate extends AbstractOAuth2ApiBinding implements Four
 	}
 	
 	@Override
-	protected MappingJacksonHttpMessageConverter getJsonMessageConverter() {
-		MappingJacksonHttpMessageConverter converter = super.getJsonMessageConverter();
-		objectMapper = new ObjectMapper();				
+	protected MappingJackson2HttpMessageConverter getJsonMessageConverter() {
+		MappingJackson2HttpMessageConverter converter = super.getJsonMessageConverter();
+		objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new FoursquareModule());
 		converter.setObjectMapper(objectMapper);		
 		return converter;

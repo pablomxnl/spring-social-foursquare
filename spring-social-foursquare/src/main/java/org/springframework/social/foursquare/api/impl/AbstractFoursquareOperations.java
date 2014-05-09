@@ -35,7 +35,7 @@ public abstract class AbstractFoursquareOperations {
 	
 	protected void requireUserAuthorization() {
 		if(!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException("foursquare");
 		}
 	}
 	
@@ -55,5 +55,5 @@ public abstract class AbstractFoursquareOperations {
 	
 	private static final String API_URL_BASE = "https://api.foursquare.com/v2/";
 	
-	private static final String API_VERSION = "20110609";
+	private static final String API_VERSION = "20120609";
 }

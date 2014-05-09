@@ -1,69 +1,13 @@
 package org.springframework.social.foursquare.api.impl.json;
 
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.module.SimpleModule;
-import org.springframework.social.foursquare.api.AllSettings;
-import org.springframework.social.foursquare.api.Badge;
-import org.springframework.social.foursquare.api.BadgeGroup;
-import org.springframework.social.foursquare.api.BadgeImage;
-import org.springframework.social.foursquare.api.BadgeSets;
-import org.springframework.social.foursquare.api.BadgeUnlocks;
-import org.springframework.social.foursquare.api.BadgesResponse;
-import org.springframework.social.foursquare.api.Category;
-import org.springframework.social.foursquare.api.Checkin;
-import org.springframework.social.foursquare.api.CheckinComment;
-import org.springframework.social.foursquare.api.CheckinCommentInfo;
-import org.springframework.social.foursquare.api.CheckinInfo;
-import org.springframework.social.foursquare.api.CheckinSource;
-import org.springframework.social.foursquare.api.ContactInfo;
-import org.springframework.social.foursquare.api.ExploreResponse;
-import org.springframework.social.foursquare.api.FoursquareUser;
-import org.springframework.social.foursquare.api.FoursquareUserGroup;
-import org.springframework.social.foursquare.api.FriendInfo;
-import org.springframework.social.foursquare.api.Friends;
-import org.springframework.social.foursquare.api.HereNow;
-import org.springframework.social.foursquare.api.Keyword;
-import org.springframework.social.foursquare.api.Keywords;
-import org.springframework.social.foursquare.api.Leaderboard;
-import org.springframework.social.foursquare.api.LeaderboardItem;
-import org.springframework.social.foursquare.api.Location;
-import org.springframework.social.foursquare.api.MayorshipInfo;
-import org.springframework.social.foursquare.api.Photo;
-import org.springframework.social.foursquare.api.PhotoGroup;
-import org.springframework.social.foursquare.api.PhotoGroups;
-import org.springframework.social.foursquare.api.PhotoSize;
-import org.springframework.social.foursquare.api.PhotoSizes;
-import org.springframework.social.foursquare.api.PhotoSource;
-import org.springframework.social.foursquare.api.Photos;
-import org.springframework.social.foursquare.api.Provider;
-import org.springframework.social.foursquare.api.Reason;
-import org.springframework.social.foursquare.api.Reasons;
-import org.springframework.social.foursquare.api.Scores;
-import org.springframework.social.foursquare.api.Special;
-import org.springframework.social.foursquare.api.Specials;
-import org.springframework.social.foursquare.api.Tip;
-import org.springframework.social.foursquare.api.TipGroup;
-import org.springframework.social.foursquare.api.TipTodoGroup;
-import org.springframework.social.foursquare.api.TipUserGroup;
-import org.springframework.social.foursquare.api.Tips;
-import org.springframework.social.foursquare.api.Todo;
-import org.springframework.social.foursquare.api.Todos;
-import org.springframework.social.foursquare.api.UserSearchResponse;
-import org.springframework.social.foursquare.api.Venue;
-import org.springframework.social.foursquare.api.VenueGroup;
-import org.springframework.social.foursquare.api.VenueGroupItem;
-import org.springframework.social.foursquare.api.VenueHistory;
-import org.springframework.social.foursquare.api.VenueHistoryItem;
-import org.springframework.social.foursquare.api.VenueLink;
-import org.springframework.social.foursquare.api.VenueLinks;
-import org.springframework.social.foursquare.api.VenueMayor;
-import org.springframework.social.foursquare.api.VenueStats;
-import org.springframework.social.foursquare.api.VenueTips;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.springframework.social.foursquare.api.*;
 
 public class FoursquareModule extends SimpleModule {
 
 	public FoursquareModule() {
-		super(FoursquareModule.class.getName(), new Version(1, 0, 0, null));
+		super(FoursquareModule.class.getName(), new Version(1, 0, 0, null, null, null));
 	}
 	
 	@Override 
@@ -84,6 +28,7 @@ public class FoursquareModule extends SimpleModule {
 		context.setMixInAnnotations(ContactInfo.class, ContactInfoMixin.class);
 		context.setMixInAnnotations(ExploreResponse.class, ExploreResponseMixin.class);
 		context.setMixInAnnotations(FoursquareUser.class, FoursquareUserMixin.class);
+        context.setMixInAnnotations(UserPhoto.class, UserPhotoMixin.class);
 		context.setMixInAnnotations(FoursquareUserGroup.class, FoursquareUserGroupMixin.class);
 		context.setMixInAnnotations(FriendInfo.class, FriendInfoMixin.class);
 		context.setMixInAnnotations(Friends.class, FriendsMixin.class);

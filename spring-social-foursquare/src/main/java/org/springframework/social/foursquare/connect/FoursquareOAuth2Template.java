@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -18,6 +18,7 @@ public class FoursquareOAuth2Template extends OAuth2Template {
 
     public FoursquareOAuth2Template(String clientId, String clientSecret) {
         super(clientId, clientSecret, "https://foursquare.com/oauth2/authenticate", "https://foursquare.com/oauth2/access_token");
+        setUseParametersForClientAuthentication(true);
     }
     
     @Override
@@ -43,7 +44,7 @@ public class FoursquareOAuth2Template extends OAuth2Template {
 		try {
 			response2 = mapper.readValue(jsonString, Map.class);
 		} catch (Exception e) {
-			
+
 		}
         return new AccessGrant(response2.get("access_token"), null, null, null);
     }
