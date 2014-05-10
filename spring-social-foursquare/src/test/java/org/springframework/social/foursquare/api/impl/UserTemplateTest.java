@@ -1,5 +1,5 @@
 package org.springframework.social.foursquare.api.impl;
-
+/*
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.GET;
@@ -23,9 +23,9 @@ import org.springframework.social.foursquare.api.Tips;
 import org.springframework.social.foursquare.api.Todos;
 import org.springframework.social.foursquare.api.UserSearchResponse;
 import org.springframework.social.foursquare.api.VenueHistory;
-
+*/
 public class UserTemplateTest extends AbstractFoursquareApiTest {
-	
+	/*
     @Test
 	public void getUser() {
 		mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self?oauth_token=ACCESS_TOKEN&v=20120609"))
@@ -234,4 +234,5 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     	
     	foursquare.userOperations().setPings("USER_ID", true);
     }
+    */
 }

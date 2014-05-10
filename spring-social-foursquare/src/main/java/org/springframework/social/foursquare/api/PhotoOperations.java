@@ -15,7 +15,7 @@ public interface PhotoOperations {
 	 * Add a photo to the specified checkin
 	 * @param checkinId	Checkin ID
 	 * @param photo	Photo resource
-	 * @param broadcast	Whether to broadcast this photo either 'twitter', 'facebook', or 'twitter,facebook'
+	 * @param broadcast	Whether to broadcast this photo either 'twitter', 'foursquare', or 'twitter,foursquare'
 	 * @param latitude	Latitude
 	 * @param longitude	Longitude
 	 * @param locationAccuracy	Location accuracy in meters
@@ -29,7 +29,7 @@ public interface PhotoOperations {
 	 * Add a photo to the specified tip
 	 * @param tipId	Tip ID
 	 * @param photo	Photo resource
-	 * @param broadcast	Whether to broadcast this photo either 'twitter', 'facebook', or 'twitter,facebook'
+	 * @param broadcast	Whether to broadcast this photo either 'twitter', 'foursquare', or 'twitter,foursquare'
 	 * @param latitude	Latitude
 	 * @param longitude	Longitude
 	 * @param locationAccuracy	Location accuracy in meters
@@ -43,7 +43,7 @@ public interface PhotoOperations {
 	 * Add a photo to the specified venue
 	 * @param venueId	Venue ID
 	 * @param photo	Photo resource
-	 * @param broadcast	Whether to broadcast this photo either 'twitter', 'facebook', or 'twitter,facebook'
+	 * @param broadcast	Whether to broadcast this photo either 'twitter', 'foursquare', or 'twitter,foursquare'
 	 * @param latitude	Latitude
 	 * @param longitude	Longitude
 	 * @param locationAccuracy	Location accuracy in meters

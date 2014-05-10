@@ -1,5 +1,6 @@
 package org.springframework.social.foursquare.api.impl;
 
+/*
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -7,11 +8,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.social.foursquare.api.FoursquareUser;
 import org.springframework.social.test.client.MockRestServiceServer;
-
+*/
 public class AbstractFoursquareApiTest {
 
+
 	public FoursquareTemplate foursquare;
-	
+
+    /*
 	protected MockRestServiceServer mockServer;
 
 	protected HttpHeaders responseHeaders;
@@ -33,4 +36,5 @@ public class AbstractFoursquareApiTest {
 		assertEquals("https://playfoursquare.s3.amazonaws.com/userpix_thumbs", profile.getPhoto().getPrefix());
         assertEquals("/OGGQATTYHOGWJL4E.jpg", profile.getPhoto().getSuffix());
 	}
+	*/
 }

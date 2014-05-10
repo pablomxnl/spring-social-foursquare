@@ -1,5 +1,5 @@
 package org.springframework.social.foursquare.api.impl;
-
+/*
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.GET;
@@ -12,9 +12,9 @@ import static org.springframework.social.test.client.ResponseCreators.withRespon
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.social.foursquare.api.AllSettings;
-
+*/
 public class SettingTemplateTest extends AbstractFoursquareApiTest {
-
+/*
 	@Test
 	public void getAll() {
 		mockServer.expect(requestTo("https://api.foursquare.com/v2/settings/all?oauth_token=ACCESS_TOKEN&v=20110609"))
@@ -48,5 +48,5 @@ public class SettingTemplateTest extends AbstractFoursquareApiTest {
 		assertEquals("done", msg);
 		mockServer.verify();
 	}
-	
+	*/
 }

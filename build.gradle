@@ -41,7 +41,9 @@ configure(allprojects - docProjects) {
         testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
         testCompile "junit:junit-dep:$junitVersion"
         testCompile "org.mockito:mockito-all:$mockitoVersion"
-        testCompile "org.springframework:spring-test:$springVersion"
+        //testCompile "org.springframework:spring-test:$springVersion"
+        //testCompile "org.springframework:spring-test-mvc:1.0.0.M2" //TODO replace org.springframework:spring-webmvc:$springVersion
+        testCompile 'org.springframework:spring-test-mvc-htmlunit:1.0.0.M1'
     }
 
     // servlet-api (2.5) and tomcat-servlet-api (3.0) classpath entries should not be

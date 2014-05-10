@@ -1,5 +1,5 @@
 package org.springframework.social.foursquare.api.impl;
-
+/*
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.social.test.client.RequestMatchers.method;
 import static org.springframework.social.test.client.RequestMatchers.requestTo;
@@ -14,9 +14,9 @@ import org.springframework.social.RateLimitExceededException;
 import org.springframework.social.ResourceNotFoundException;
 import org.springframework.social.foursquare.api.FoursquareApiException;
 import org.springframework.social.foursquare.api.ParamErrorException;
-
+*/
 public class ErrorHandlingTest extends AbstractFoursquareApiTest {
-	
+	/*
 	private String errorTemplate = "{\"meta\":{\"code\":400,\"errorType\": \"{error_type}\",\"errorDetail\": \"{error_detail}\"},\"response\":{}}";
 	
 	private String getErrorResponse(String type, String detail) {
@@ -84,6 +84,6 @@ public class ErrorHandlingTest extends AbstractFoursquareApiTest {
 			.andRespond(withResponse(getErrorResponse("other", "Some other error"), responseHeaders, HttpStatus.BAD_REQUEST, ""));
 		
 		foursquare.venueOperations().getVenue("VENUE_ID");
-	}
+	}*/
 
 }

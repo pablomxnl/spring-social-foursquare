@@ -1,5 +1,6 @@
 package org.springframework.social.foursquare.api.impl;
 
+/*
 import static org.junit.Assert.assertEquals;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.social.test.client.RequestMatchers.method;
@@ -10,9 +11,9 @@ import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.social.foursquare.api.Special;
 import org.springframework.social.foursquare.api.Specials;
-
+*/
 public class SpecialTemplateTest extends AbstractFoursquareApiTest {
-
+/*
 	@Test
 	public void get() {
 		mockServer.expect(requestTo("https://api.foursquare.com/v2/specials/SPECIAL_ID?oauth_token=ACCESS_TOKEN&v=20110609&venueId=VENUE_ID"))
@@ -34,5 +35,5 @@ public class SpecialTemplateTest extends AbstractFoursquareApiTest {
 		assertEquals(30, specials.getCount());
 		mockServer.verify();
 	}
-	
+	*/
 }

@@ -14,9 +14,9 @@ public class Venue {
 	private String url;
 	private HereNow hereNow;
 	private VenueTips tips;
-	private List<String> tags;
-	private List<Special> specials;
-	private List<Special> specialsNearby;
+	//private List<String> tags;
+	//private List<Special> specials;
+	//private List<Special> specialsNearby;
 	private String shortUrl;
 	private String timezone;
 	private VenueBeenHere beenHere;
@@ -102,17 +102,17 @@ public class Venue {
 		return tips;
 	}
 
-	public List<String> getTags() {
-		return tags;
-	}
-
-	public List<Special> getSpecials() {
-		return specials;
-	}
-
-	public List<Special> getSpecialsNearby() {
-		return specialsNearby;
-	}
+//	public List<String> getTags() {
+//		return tags;
+//	}
+//
+//	public List<Special> getSpecials() {
+//		return specials;
+//	}
+//
+//	public List<Special> getSpecialsNearby() {
+//		return specialsNearby;
+//	}
 
 	public String getShortUrl() {
 		return shortUrl;
