@@ -16,10 +16,6 @@
 
 rootProject.name = 'spring-social-foursquare'
 
-include 'docs', 'docs:manual'
-def docs = findProject(':docs')
-docs.buildFileName = 'docs.gradle'
-
 include 'spring-social-foursquare'
 /* include 'spring-social-foursquare-web' */
 

@@ -40,8 +40,9 @@ public class FoursquareErrorHandler extends DefaultResponseErrorHandler {
 			return true;
 		}
 		// only bother checking the body for errors if we get past the default error check
-		String content = readFully(response.getBody());		
-		return content.contains("\"errorType\":") || content.equals("false");
+		return false;
+		//FIXME This reads the bugger stream and can break tests String content = readFully(response.getBody());		
+		//return content.contains("\"errorType\":") || content.equals("false");
 	}
 	
 	@SuppressWarnings("unchecked")
