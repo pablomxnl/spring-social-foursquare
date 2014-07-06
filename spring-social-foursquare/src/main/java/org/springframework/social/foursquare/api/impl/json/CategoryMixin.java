@@ -5,7 +5,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.springframework.social.foursquare.api.Category;
+import org.springframework.social.foursquare.api.Icon;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 abstract class CategoryMixin {
@@ -13,8 +15,9 @@ abstract class CategoryMixin {
 	CategoryMixin(
 			@JsonProperty("id") String id,
 			@JsonProperty("name") String name, 
+			@JsonProperty("shortName") String shortName, 
 			@JsonProperty("pluralName") String pluralName, 
-			@JsonProperty("iconUrl") String iconUrl,
+			@JsonProperty("icon") Icon icon,
 			@JsonProperty("primary") boolean primary) {}
 	
 	@JsonProperty("parents") 

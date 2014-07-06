@@ -43,6 +43,38 @@ public class Tip {
 		return user;
 	}
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public void setVenue(Venue venue) {
+		this.venue = venue;
+	}
+
+	public void setUser(FoursquareUser user) {
+		this.user = user;
+	}
+
+	public void setTodo(TipTodoGroup todo) {
+		this.todo = todo;
+	}
+
+	public void setDone(TipTodoGroup done) {
+		this.done = done;
+	}
+
 	public TipTodoGroup getTodo() {
 		return todo;
 	}

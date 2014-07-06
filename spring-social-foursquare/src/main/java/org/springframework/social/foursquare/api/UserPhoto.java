@@ -8,12 +8,19 @@ package org.springframework.social.foursquare.api;
 public class UserPhoto {
     private String prefix;
     private String suffix;
+    private String url;
 
     public UserPhoto(String prefix, String suffix) {
         this.prefix = prefix;
         this.suffix = suffix;
+        this.url = prefix + suffix;
     }
 
+    
+    public UserPhoto(String url) {
+        this.url = url;
+        
+    }
     public String getPrefix() {
         return prefix;
     }

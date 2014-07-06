@@ -16,7 +16,7 @@ public class PhotoTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void get() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/photos/PHOTO_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/photos/PHOTO_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(GET))
 			.andRespond(withSuccess().body(read("testdata/photo.json")).headers(responseHeaders));
 		
@@ -27,7 +27,7 @@ public class PhotoTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void addToCheckin() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/photos/add?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/photos/add?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(POST))
 			.andRespond(withSuccess().body(read("testdata/photo.json")).headers(responseHeaders));
 		
@@ -38,7 +38,7 @@ public class PhotoTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void addToTip() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/photos/add?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/photos/add?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(POST))
 			.andRespond(withSuccess().body(read("testdata/photo.json")).headers(responseHeaders));
 		
@@ -49,7 +49,7 @@ public class PhotoTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void addToVenue() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/photos/add?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/photos/add?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(POST))
 			.andRespond(withSuccess().body(read("testdata/photo.json")).headers(responseHeaders));
 		

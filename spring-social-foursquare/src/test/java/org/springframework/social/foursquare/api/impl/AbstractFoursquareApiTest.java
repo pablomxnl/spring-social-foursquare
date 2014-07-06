@@ -15,7 +15,7 @@ import org.springframework.test.web.client.MockRestServiceServer;
 public class AbstractFoursquareApiTest {
 
 	public FoursquareTemplate foursquare;
-
+	public final static String API_VERSION = "20140705";
 	protected MockRestServiceServer mockServer;
 
 	protected HttpHeaders responseHeaders;
@@ -41,10 +41,8 @@ public class AbstractFoursquareApiTest {
 		assertEquals("/OGGQATTYHOGWJL4E.jpg", profile.getPhoto().getSuffix());
 	}
 
-	public String read(String filename){
-		ClassPathResource res = new ClassPathResource(
-				filename,
-				getClass());
+	public String read(String filename) {
+		ClassPathResource res = new ClassPathResource(filename, getClass());
 		try {
 			String result = IOUtils.toString(res.getInputStream());
 			return result;

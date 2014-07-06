@@ -14,7 +14,7 @@ public class SpecialTemplateTest extends AbstractFoursquareApiTest {
 
 	@Test
 	public void get() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/specials/SPECIAL_ID?oauth_token=ACCESS_TOKEN&v=20120609&venueId=VENUE_ID"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/specials/SPECIAL_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&venueId=VENUE_ID"))
 			.andExpect(method(GET))
 			.andRespond(withSuccess().body(read("testdata/special.json")).headers(responseHeaders));
 		
@@ -25,7 +25,7 @@ public class SpecialTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void search() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/specials/search?oauth_token=ACCESS_TOKEN&v=20120609&limit=10&ll=10.0%2C10.0&alt=10.0&altAcc=100&llAcc=100"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/specials/search?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&limit=10&ll=10.0%2C10.0&alt=10.0&altAcc=100&llAcc=100"))
 			.andExpect(method(GET))
 			.andRespond(withSuccess().body(read("testdata/searchspecials.json")).headers(responseHeaders));
 		

@@ -26,7 +26,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
 	
     @Test
 	public void getUser() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(GET))
 			.andRespond(withSuccess().body(read("testdata/user-profile.json")).headers(responseHeaders));
 		
@@ -37,7 +37,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getLeaderboard() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/leaderboard?oauth_token=ACCESS_TOKEN&v=20120609"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/leaderboard?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/leaderboard.json")).headers(responseHeaders));
         
@@ -48,7 +48,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void searchWithParameters() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/search?oauth_token=ACCESS_TOKEN&v=20120609&twitter=matt&phone=123&email=john%40doe.com&fbid=321"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/search?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&twitter=matt&phone=123&email=john%40doe.com&fbid=321"))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/user-search.json")).headers(responseHeaders));
         
@@ -61,7 +61,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void searchName() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/search?oauth_token=ACCESS_TOKEN&v=20120609&name=matt"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/search?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&name=matt"))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/user-search.json")).headers(responseHeaders));
         
@@ -72,7 +72,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void searchTwitterFriends() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/search?oauth_token=ACCESS_TOKEN&v=20120609&twitterSource=matt"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/search?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&twitterSource=matt"))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/user-search.json")).headers(responseHeaders));
         
@@ -83,7 +83,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getRequests() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/requests?oauth_token=ACCESS_TOKEN&v=20120609"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/requests?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/requests.json")).headers(responseHeaders));
         
@@ -94,7 +94,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getBadges() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/badges?oauth_token=ACCESS_TOKEN&v=20120609"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/badges?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/badges.json")).headers(responseHeaders));
         
@@ -105,7 +105,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getCheckins() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/checkins?oauth_token=ACCESS_TOKEN&v=20120609"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/checkins?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/checkins.json")).headers(responseHeaders));
         
@@ -117,7 +117,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getCheckinsWithOffset() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/checkins?oauth_token=ACCESS_TOKEN&v=20120609&limit=100&offset=50"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/checkins?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&limit=100&offset=50"))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/checkins.json")).headers(responseHeaders));
         
@@ -128,7 +128,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getCheckinsWithTimestamps() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/checkins?oauth_token=ACCESS_TOKEN&v=20120609&limit=100&afterTimestamp=600&beforeTimestamp=500&offset=50"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/checkins?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&limit=100&afterTimestamp=600&beforeTimestamp=500&offset=50"))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/checkins.json")).headers(responseHeaders));
         
@@ -139,7 +139,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getFriends() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/friends?oauth_token=ACCESS_TOKEN&v=20120609"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/friends?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/friends.json")).headers(responseHeaders));
         
@@ -151,7 +151,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getTips() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/tips?oauth_token=ACCESS_TOKEN&v=20120609&sort=recent"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/tips?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&sort=recent"))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/tips.json")).headers(responseHeaders));
         
@@ -163,7 +163,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
 
     @Test
     public void getTodos() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/todos?oauth_token=ACCESS_TOKEN&v=20120609&sort=recent"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/todos?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&sort=recent"))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/todos.json")).headers(responseHeaders));
         
@@ -176,7 +176,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void getVenueHistory() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/venuehistory?oauth_token=ACCESS_TOKEN&v=20120609"))
+        mockServer.expect(requestTo("https://api.foursquare.com/v2/users/self/venuehistory?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
             .andExpect(method(GET))
             .andRespond(withSuccess().body(read("testdata/venue-history.json")).headers(responseHeaders));
         
@@ -189,7 +189,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void requestFriend() {
-    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/request?oauth_token=ACCESS_TOKEN&v=20120609"))
+    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/request?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 	        .andExpect(method(POST))
 	        .andRespond(withSuccess().body(read("testdata/ok-response.json")).headers(responseHeaders));
     	
@@ -198,7 +198,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void removeFriend() {
-    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/unfriend?oauth_token=ACCESS_TOKEN&v=20120609"))
+    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/unfriend?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 	        .andExpect(method(POST))
 	        .andRespond(withSuccess().body(read("testdata/ok-response.json")).headers(responseHeaders));
     	
@@ -207,7 +207,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void approveFriend() {
-    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/approve?oauth_token=ACCESS_TOKEN&v=20120609"))
+    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/approve?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 	        .andExpect(method(POST))
 	        .andRespond(withSuccess().body(read("testdata/ok-response.json")).headers(responseHeaders));
     	
@@ -216,7 +216,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void denyFriend() {
-    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/deny?oauth_token=ACCESS_TOKEN&v=20120609"))
+    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/deny?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 	        .andExpect(method(POST))
 	        .andRespond(withSuccess().body(read("testdata/ok-response.json")).headers(responseHeaders));
     	
@@ -225,7 +225,7 @@ public class UserTemplateTest extends AbstractFoursquareApiTest {
     
     @Test
     public void setPings() {
-    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/setpings?oauth_token=ACCESS_TOKEN&v=20120609"))
+    	mockServer.expect(requestTo("https://api.foursquare.com/v2/users/USER_ID/setpings?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 	        .andExpect(method(POST))
 	        .andExpect(content().string("value=true"))
 	        .andRespond(withSuccess().body(read("testdata/ok-response.json")).headers(responseHeaders));

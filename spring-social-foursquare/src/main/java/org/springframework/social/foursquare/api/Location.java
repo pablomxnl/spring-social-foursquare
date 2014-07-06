@@ -11,7 +11,17 @@ public class Location {
 	private double latitude;
 	private double longitude;
 	private int distance;
+	private String cc; // Country Code
 	
+	
+	public String getCc() {
+		return cc;
+	}
+
+	public void setCc(String cc) {
+		this.cc = cc;
+	}
+
 	public Location(String address, String crossStreet, String city, String state,
 			String postalCode, String country, double latitude, double longitude) {
 		this.address = address;
@@ -22,6 +32,7 @@ public class Location {
 		this.country = country;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		
 	}
 
 	public String getAddress() {

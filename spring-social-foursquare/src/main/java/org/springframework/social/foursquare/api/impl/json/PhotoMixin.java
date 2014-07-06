@@ -12,23 +12,27 @@ import org.springframework.social.foursquare.api.PhotoSource;
 import org.springframework.social.foursquare.api.Tip;
 import org.springframework.social.foursquare.api.Venue;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 abstract class PhotoMixin {
 	@JsonCreator
 	PhotoMixin(
 			@JsonProperty("id") String id,
-			@JsonProperty("createdAt") @JsonDeserialize(using=FoursquareDateDeserializer.class) Date createdAt,
-			@JsonProperty("url") String url,
+			@JsonProperty("createdAt") @JsonDeserialize(using = FoursquareDateDeserializer.class) Date createdAt,
+			@JsonProperty("prefix") String prefix,
+			@JsonProperty("suffix") String suffix,
+			@JsonProperty("width") int width,
+			@JsonProperty("height") int height,
 			@JsonProperty("sizes") PhotoSizes sizes,
-			@JsonProperty("user") FoursquareUser user){}
-	
+			@JsonProperty("user") FoursquareUser user,
+			@JsonProperty("visibility") String visibility) {
+	}
 
-	@JsonProperty("source") 
+	@JsonProperty("source")
 	PhotoSource source;
-	
-	@JsonProperty("venue") 
+
+	@JsonProperty("venue")
 	Venue venue;
-	
-	@JsonProperty("tip") 
+
+	@JsonProperty("tip")
 	Tip tip;
 }

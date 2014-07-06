@@ -19,7 +19,7 @@ public class CheckinTemplateTest extends AbstractFoursquareApiTest {
 
 	@Test
 	public void get() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/CHECKIN_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/CHECKIN_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(GET))
 			.andRespond(withSuccess().body(read("testdata/checkin.json")).headers(responseHeaders));
 		
@@ -29,7 +29,7 @@ public class CheckinTemplateTest extends AbstractFoursquareApiTest {
 	}
 	
 	public void add() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/add?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/add?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(POST))
 			.andExpect(content().string("venueId=VENUE_ID&shout=SHOUT&broadcast=public&ll=10.0,10.0&llAcc=10&alt=200.0&altAcc=10"))
 			.andRespond(withSuccess().body(read("testdata/checkin.json")).headers(responseHeaders));
@@ -42,7 +42,7 @@ public class CheckinTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void getRecent() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/recent?oauth_token=ACCESS_TOKEN&v=20120609&limit=10&afterTimestamp=1000&ll=10.0%2C10.0"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/recent?oauth_token=ACCESS_TOKEN&v="+API_VERSION+"&limit=10&afterTimestamp=1000&ll=10.0%2C10.0"))
 			.andExpect(method(GET))
 			.andRespond(withSuccess().body(read("testdata/recentcheckins.json")).headers(responseHeaders));
 		
@@ -54,7 +54,7 @@ public class CheckinTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void addComment() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/CHECKIN_ID/addcomment?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/CHECKIN_ID/addcomment?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(POST))
 			.andExpect(content().string("text=COMMENT_TEXT"))
 			.andRespond(withSuccess().body(read("testdata/checkincomment.json")).headers(responseHeaders));
@@ -66,7 +66,7 @@ public class CheckinTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void deleteComment() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/CHECKIN_ID/deletecomment?oauth_token=ACCESS_TOKEN&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/checkins/CHECKIN_ID/deletecomment?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 			.andExpect(method(POST))
 			.andExpect(content().string("commentId=COMMENT_ID"))
 			.andRespond(withSuccess().body(read("testdata/checkin.json")).headers(responseHeaders));

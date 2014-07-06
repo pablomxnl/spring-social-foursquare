@@ -20,6 +20,7 @@ public class FoursquareModule extends SimpleModule {
 	    context.setMixInAnnotations(BadgesResponse.class, BadgesResponseMixin.class);
 	    context.setMixInAnnotations(BadgeUnlocks.class, BadgeUnlocksMixin.class);
 	    context.setMixInAnnotations(Category.class, CategoryMixin.class);
+	    context.setMixInAnnotations(Icon.class, IconMixin.class);
 		context.setMixInAnnotations(Checkin.class, CheckinMixin.class);
 		context.setMixInAnnotations(CheckinSource.class, CheckinSourceMixin.class);
 		context.setMixInAnnotations(CheckinComment.class, CheckinCommentMixin.class);

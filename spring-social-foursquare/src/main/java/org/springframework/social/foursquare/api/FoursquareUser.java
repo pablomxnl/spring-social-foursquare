@@ -8,7 +8,7 @@ public class FoursquareUser {
 	private final UserPhoto photo;
 	private final String gender;
 	private final String homeCity;
-	private final String relationship;
+	private String relationship;
 	private boolean pings;
 	private ContactInfo contactInfo;
 	private MayorshipInfo mayorshipInfo;
@@ -26,7 +26,18 @@ public class FoursquareUser {
 		this.homeCity = homeCity;
 		this.relationship = relationship;
 	}
-
+	public FoursquareUser(String id, String firstName, String lastName, UserPhoto photo,
+			String gender, String homeCity) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.photo = photo;
+		this.gender = gender;
+		this.homeCity = homeCity;
+		
+	}
+	
+ 
 	public String getId() {
 		return id;
 	}

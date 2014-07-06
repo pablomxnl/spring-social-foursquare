@@ -27,7 +27,7 @@ public class ErrorHandlingTest extends AbstractFoursquareApiTest {
 	@Test(expected = NotAuthorizedException.class)
 	public void badRequest() {
 		mockServer
-				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 				.andExpect(method(GET))
 				.andRespond(
 						withBadRequest().body(
@@ -41,7 +41,7 @@ public class ErrorHandlingTest extends AbstractFoursquareApiTest {
 	@Test(expected = ParamErrorException.class)
 	public void paramError() {
 		mockServer
-				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 				.andExpect(method(GET))
 				.andRespond(
 						withBadRequest()
@@ -55,7 +55,7 @@ public class ErrorHandlingTest extends AbstractFoursquareApiTest {
 	@Test(expected = ResourceNotFoundException.class)
 	public void endpointError() {
 		mockServer
-				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 				.andExpect(method(GET))
 				.andRespond(
 						withBadRequest().body(
@@ -69,7 +69,7 @@ public class ErrorHandlingTest extends AbstractFoursquareApiTest {
 	@Test(expected = InsufficientPermissionException.class)
 	public void notAuthorized() {
 		mockServer
-				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 				.andExpect(method(GET))
 				.andRespond(
 						withBadRequest().body(
@@ -83,7 +83,7 @@ public class ErrorHandlingTest extends AbstractFoursquareApiTest {
 	@Test(expected = RateLimitExceededException.class)
 	public void rateLimit() {
 		mockServer
-				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 				.andExpect(method(GET))
 				.andRespond(
 						withBadRequest().body(
@@ -96,7 +96,7 @@ public class ErrorHandlingTest extends AbstractFoursquareApiTest {
 	@Test(expected = InternalServerErrorException.class)
 	public void internalServerError() {
 		mockServer
-				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 				.andExpect(method(GET))
 				.andRespond(
 						withBadRequest().body(
@@ -110,7 +110,7 @@ public class ErrorHandlingTest extends AbstractFoursquareApiTest {
 	@Test(expected = FoursquareApiException.class)
 	public void otherError() {
 		mockServer
-				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v=20120609"))
+				.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?oauth_token=ACCESS_TOKEN&v="+API_VERSION))
 				.andExpect(method(GET))
 				.andRespond(
 						withBadRequest().body(

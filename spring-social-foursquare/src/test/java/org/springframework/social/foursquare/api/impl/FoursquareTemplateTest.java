@@ -33,7 +33,7 @@ public class FoursquareTemplateTest extends AbstractFoursquareApiTest {
 	
 	@Test
 	public void noAuthGetVenue() {
-		mockServer.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&v=20120609"))
+		mockServer.expect(requestTo("https://api.foursquare.com/v2/venues/VENUE_ID?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&v="+API_VERSION))
 			.andExpect(method(GET))
 			.andRespond(withSuccess().body(read("testdata/venue.json")).headers(responseHeaders));
 		
