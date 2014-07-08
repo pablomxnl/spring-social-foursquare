@@ -2,7 +2,7 @@ package org.springframework.social.foursquare.api.impl.json;
 
 import java.util.List;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.social.foursquare.api.Category;
 
 @JsonDeserialize(using=CategoriesContainerDeserializer.class)

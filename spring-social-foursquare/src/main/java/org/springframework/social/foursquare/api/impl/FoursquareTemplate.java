@@ -1,8 +1,8 @@
 package org.springframework.social.foursquare.api.impl;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.social.foursquare.api.CheckinOperations;
 import org.springframework.social.foursquare.api.Foursquare;
 import org.springframework.social.foursquare.api.PhotoOperations;
@@ -18,75 +18,104 @@ import org.springframework.social.support.ClientHttpRequestFactorySelector;
 import org.springframework.social.support.URIBuilder;
 import org.springframework.web.client.RestTemplate;
 
-public class FoursquareTemplate extends AbstractOAuth2ApiBinding implements Foursquare {
+public class FoursquareTemplate extends AbstractOAuth2ApiBinding implements
+		Foursquare {
 
 	private String accessToken;
-	
+
 	private String clientId;
-	
+
 	private String clientSecret;
-	
+
 	private UserOperations userOperations;
-	
+
 	private VenueOperations venueOperations;
-	
+
 	private CheckinOperations checkinOperations;
-	
+
 	private TipOperations tipOperations;
-	
+
 	private PhotoOperations photoOperations;
-	
+
 	private SettingOperations settingOperations;
-	
+
 	private SpecialOperations specialOperations;
-	
+
 	private ObjectMapper objectMapper;
-	
+
+	/**
+	 * Create a Foursquare WITHOUT a User access token - for generic Foursquare
+	 * service access that does not require User specific access requirements
+	 * 
+	 * @param clientId App Client Id
+	 * @param clientSecret App Client Secret
+	 */
 	public FoursquareTemplate(String clientId, String clientSecret) {
-		this(clientId, clientSecret, null);
+		super();
+		this.clientId = clientId;
+		this.clientSecret = clientSecret;
+		initialize();
 	}
-	
-	public FoursquareTemplate(String clientId, String clientSecret, String accessToken) {
+
+	/**
+	 * Create a FoursquareTemplate that has a User's access token - impersonate
+	 * the user
+	 * 
+	 * @param clientId
+	 *            App Client Id
+	 * @param clientSecret
+	 *            App Client Secret
+	 * @param accessToken
+	 *            User Access Token
+	 */
+	public FoursquareTemplate(String clientId, String clientSecret,
+			String accessToken) {
+
 		super(accessToken);
 		this.clientId = clientId;
 		this.clientSecret = clientSecret;
 		this.accessToken = accessToken;
 		initialize();
 	}
-	
+
 	@Override
 	public void setRequestFactory(ClientHttpRequestFactory requestFactory) {
-		// Wrap the request factory with a BufferingClientHttpRequestFactory so that the error handler can do repeat reads on the response.getBody()
-		super.setRequestFactory(ClientHttpRequestFactorySelector.bufferRequests(requestFactory));
+		// Wrap the request factory with a BufferingClientHttpRequestFactory so
+		// that the error handler can do repeat reads on the response.getBody()
+		super.setRequestFactory(ClientHttpRequestFactorySelector
+				.bufferRequests(requestFactory));
 	}
-	
+
 	// AbstractOAuth2ApiBinding hooks
 	@Override
 	protected OAuth2Version getOAuth2Version() {
 		return OAuth2Version.DRAFT_10;
 	}
-	
+
 	@Override
-	protected MappingJacksonHttpMessageConverter getJsonMessageConverter() {
-		MappingJacksonHttpMessageConverter converter = super.getJsonMessageConverter();
-		objectMapper = new ObjectMapper();				
+	protected MappingJackson2HttpMessageConverter getJsonMessageConverter() {
+		MappingJackson2HttpMessageConverter converter = super
+				.getJsonMessageConverter();
+		objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new FoursquareModule());
-		converter.setObjectMapper(objectMapper);		
+		converter.setObjectMapper(objectMapper);
 		return converter;
 	}
-	
+
 	@Override
 	protected void configureRestTemplate(RestTemplate restTemplate) {
 		restTemplate.setErrorHandler(new FoursquareErrorHandler());
 	}
-	
+
 	// private helpers
 	private void initialize() {
-		// Wrap the request factory with a BufferingClientHttpRequestFactory so that the error handler can do repeat reads on the response.getBody()
-		super.setRequestFactory(ClientHttpRequestFactorySelector.bufferRequests(getRestTemplate().getRequestFactory()));
+		// Wrap the request factory with a BufferingClientHttpRequestFactory so
+		// that the error handler can do repeat reads on the response.getBody()
+		super.setRequestFactory(ClientHttpRequestFactorySelector
+				.bufferRequests(getRestTemplate().getRequestFactory()));
 		initSubApis();
 	}
-	
+
 	private void initSubApis() {
 		this.userOperations = new UserTemplate(this, isAuthorized());
 		this.venueOperations = new VenueTemplate(this, isAuthorized());
@@ -96,7 +125,7 @@ public class FoursquareTemplate extends AbstractOAuth2ApiBinding implements Four
 		this.settingOperations = new SettingTemplate(this, isAuthorized());
 		this.specialOperations = new SpecialTemplate(this, isAuthorized());
 	}
-	
+
 	public UserOperations userOperations() {
 		return userOperations;
 	}
@@ -126,9 +155,10 @@ public class FoursquareTemplate extends AbstractOAuth2ApiBinding implements Four
 	}
 
 	public URIBuilder withAccessToken(String uri) {
-		return (accessToken == null) 
-			? URIBuilder.fromUri(uri).queryParam("client_id", clientId).queryParam("client_secret", clientSecret)
-			: URIBuilder.fromUri(uri).queryParam("oauth_token", accessToken);
+		return (accessToken == null) ? URIBuilder.fromUri(uri)
+				.queryParam("client_id", clientId)
+				.queryParam("client_secret", clientSecret) : URIBuilder
+				.fromUri(uri).queryParam("oauth_token", accessToken);
 	}
-	
+
 }

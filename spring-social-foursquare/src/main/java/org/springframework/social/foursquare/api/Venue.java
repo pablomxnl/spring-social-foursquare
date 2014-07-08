@@ -1,7 +1,6 @@
 package org.springframework.social.foursquare.api;
 
 import java.util.List;
-import java.util.Map;
 
 public class Venue {
 	
@@ -16,11 +15,53 @@ public class Venue {
 	private HereNow hereNow;
 	private VenueTips tips;
 	private List<String> tags;
-	private List<Special> specials;
+	private Specials specials;
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setHereNow(HereNow hereNow) {
+		this.hereNow = hereNow;
+	}
+
+	public void setTips(VenueTips tips) {
+		this.tips = tips;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+	
+
+	public void setSpecialsNearby(List<Special> specialsNearby) {
+		this.specialsNearby = specialsNearby;
+	}
+
+	public void setShortUrl(String shortUrl) {
+		this.shortUrl = shortUrl;
+	}
+
+	public void setTimezone(String timezone) {
+		this.timezone = timezone;
+	}
+
+	public void setBeenHere(VenueBeenHere beenHere) {
+		this.beenHere = beenHere;
+	}
+
+	public void setPhotos(PhotoGroups photos) {
+		this.photos = photos;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	private List<Special> specialsNearby;
 	private String shortUrl;
 	private String timezone;
-	private Map<String,Integer> beenHere;
+	private VenueBeenHere beenHere;
 	private PhotoGroups photos;
 	private String description;
 	
@@ -107,9 +148,7 @@ public class Venue {
 		return tags;
 	}
 
-	public List<Special> getSpecials() {
-		return specials;
-	}
+	
 
 	public List<Special> getSpecialsNearby() {
 		return specialsNearby;
@@ -123,7 +162,7 @@ public class Venue {
 		return timezone;
 	}
 
-	public Map<String, Integer> getBeenHere() {
+	public VenueBeenHere getBeenHere() {
 		return beenHere;
 	}
 

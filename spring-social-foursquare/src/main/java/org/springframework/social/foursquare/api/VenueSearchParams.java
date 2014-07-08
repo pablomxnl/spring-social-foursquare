@@ -6,7 +6,7 @@ import java.util.Map;
 public class VenueSearchParams {
 
     public static enum Intent {
-        CHECKIN, MATCH, SPECIALS
+        CHECKIN, MATCH, SPECIALS, GLOBAL
     }
 
     private Double latitude;

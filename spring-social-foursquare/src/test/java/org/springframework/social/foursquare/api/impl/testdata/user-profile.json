@@ -15,7 +15,10 @@
          "id":"700390",
          "firstName":"Matt",
          "lastName":"Wright",
-         "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/OGGQATTYHOGWJL4E.jpg",
+         "photo": {
+             "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+             "suffix": "/OGGQATTYHOGWJL4E.jpg"
+         },
          "gender":"male",
          "homeCity":"New York",
          "relationship":"self",
@@ -191,7 +194,10 @@
                         "id":"25718",
                         "firstName":"Elad",
                         "lastName":"Elrom",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/550YBSH5ENUEL0LE.jpg",
+                        "photo": {
+                            "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/550YBSH5ENUEL0LE.jpg"
+                        },
                         "gender":"male",
                         "homeCity":"New York, NY",
                         "relationship":"friend"
@@ -200,7 +206,10 @@
                         "id":"7785706",
                         "firstName":"Emily",
                         "lastName":"Lohmann",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/QSLUKN5RE32KN4NF.jpg",
+                        "photo": {
+                            "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/QSLUKN5RE32KN4NF.jpg"
+                        },
                         "gender":"female",
                         "homeCity":"Brooklyn, NY",
                         "relationship":"friend"
@@ -209,7 +218,10 @@
                         "id":"34534",
                         "firstName":"Jesse",
                         "lastName":"Freeman",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/LGJHFFAIALFXXH2D.png",
+                        "photo": {
+                            "prefix":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/LGJHFFAIALFXXH2D.png"
+                        },
                         "gender":"male",
                         "homeCity":"Brooklyn, NY",
                         "relationship":"friend"
@@ -218,7 +230,10 @@
                         "id":"6061196",
                         "firstName":"Matt",
                         "lastName":"Lohmann",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/BM2PSQOSZ4XFMT4G.jpg",
+                        "photo": {
+                            "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/BM2PSQOSZ4XFMT4G.jpg"
+                        },
                         "gender":"male",
                         "homeCity":"Brooklyn, NY",
                         "relationship":"friend"
@@ -227,7 +242,10 @@
                         "id":"3839677",
                         "firstName":"Diana",
                         "lastName":"Mandelare",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/VJRYU3BCKIMPNBHQ.jpg",
+                        "photo": {
+                            "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/VJRYU3BCKIMPNBHQ.jpg"
+                        },
                         "gender":"female",
                         "homeCity":"New York, NY",
                         "relationship":"friend"
@@ -236,7 +254,10 @@
                         "id":"1541584",
                         "firstName":"Trey",
                         "lastName":"Studley",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/SG4N2FSYJIIIYEWN.jpg",
+                        "photo": {
+                            "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/SG4N2FSYJIIIYEWN.jpg"
+                        },
                         "gender":"male",
                         "homeCity":"New York, NY",
                         "relationship":"friend"
@@ -245,7 +266,10 @@
                         "id":"527",
                         "firstName":"Crystal",
                         "lastName":"Ginn",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/527_1236920910.jpg",
+                        "photo": {
+                            "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/527_1236920910.jpg"
+                        },
                         "gender":"female",
                         "homeCity":"New York, NY",
                         "relationship":"friend"
@@ -254,7 +278,10 @@
                         "id":"7266063",
                         "firstName":"Mustafa",
                         "lastName":"Demirkent",
-                        "photo":"https://foursquare.com/img/blank_boy.png",
+                        "photo": {
+                            "prefix": "https://foursquare.com/img",
+                            "suffix": "/blank_boy.png"
+                        },
                         "gender":"male",
                         "homeCity":"New York, NY",
                         "relationship":"friend"
@@ -262,7 +289,10 @@
                      {
                         "id":"3795696",
                         "firstName":"smo",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/BKXN23XSF2GXG0ZG.png",
+                        "photo": {
+                            "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/BKXN23XSF2GXG0ZG.png"
+                        },
                         "gender":"male",
                         "homeCity":"Brooklyn, NY",
                         "relationship":"friend"
@@ -271,7 +301,10 @@
                         "id":"3339694",
                         "firstName":"Dennis",
                         "lastName":"Unlucky",
-                        "photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/DRBBDQEWVBDQ3RYT.jpg",
+                        "photo": {
+                            "prefix": "https://playfoursquare.s3.amazonaws.com/userpix_thumbs",
+                            "suffix": "/DRBBDQEWVBDQ3RYT.jpg"
+                        },
                         "gender":"male",
                         "homeCity":"Kihei, HI",
                         "relationship":"friend"

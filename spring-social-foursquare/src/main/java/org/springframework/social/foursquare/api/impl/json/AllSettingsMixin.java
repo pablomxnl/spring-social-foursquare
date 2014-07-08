@@ -1,14 +1,15 @@
 package org.springframework.social.foursquare.api.impl.json;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 abstract class AllSettingsMixin {
 	@JsonCreator
 	AllSettingsMixin(
-			@JsonProperty("receivePings") boolean receivePings, 
+			@JsonProperty("receivePings") boolean receivePings,
 			@JsonProperty("receiveCommentPings") boolean receiveCommentPings, 
 			@JsonProperty("sendToTwitter") boolean sendToTwitter, 
 			@JsonProperty("sendMayorshipsToTwitter") boolean sendMayorshipsToTwitter, 

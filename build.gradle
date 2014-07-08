@@ -1,165 +1,202 @@
-/*
- * Copyright 2010 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
- import org.springframework.build.Version
+buildscript {
+    repositories {
+        maven { url 'http://repo.spring.io/plugins-release' }
+    }
+    dependencies {
+        classpath 'org.springframework.build.gradle:docbook-reference-plugin:0.2.8'
+        classpath 'me.champeau.gradle:gradle-javadoc-hotfix-plugin:0.1'
+        classpath('org.asciidoctor:asciidoctor-gradle-plugin:0.7.0')
+        classpath('org.asciidoctor:asciidoctor-java-integration:0.1.4.preview.1')
+    }
+}
 
-// -----------------------------------------------------------------------------
-// Main gradle build file for Spring Social Foursquare
-// @author Matt Wright
-// -----------------------------------------------------------------------------
+// Set up different subproject lists for individual configuration
+ext.javaProjects = subprojects.findAll { project -> project.name != 'docs' && project.name != 'manual' }
+ext.docProjects = subprojects.findAll { project -> project.name == 'docs' || project.name == 'manual' }
+ext.coreModuleProjects = javaProjects
 
-// -----------------------------------------------------------------------------
-// Configuration for the root project
-// -----------------------------------------------------------------------------
-description = 'Spring Social Foursquare'
-abbreviation = 'SOCIAL-FOURSQUARE'
+configure(allprojects - docProjects) {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'javadocHotfix'
 
-apply plugin: 'base'
-apply plugin: 'idea'
-
-def buildSrcDir = "$rootDir/buildSrc"
-apply from: "$buildSrcDir/wrapper.gradle"
-apply from: "$buildSrcDir/maven-root-pom.gradle"
-
-// -----------------------------------------------------------------------------
-// Configuration for all projects including this one (the root project)
-//
-// @see settings.gradle for list of all subprojects
-// -----------------------------------------------------------------------------
-allprojects {
-    // group will translate to groupId during pom generation and deployment
     group = 'org.springframework.social'
 
-    // version will be used in maven pom generation as well as determining
-    // where artifacts should be deployed, based on release type of snapshot,
-    // milestone or release.
-    // @see org.springframework.build.Version under buildSrc/ for more info
-    // @see gradle.properties for the declaration of this property.
-    version = new Version(springSocialFoursquareVersion)
+    sourceCompatibility=1.5
+    targetCompatibility=1.5
 
-    // default set of maven repositories to be used when resolving dependencies
+    [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:none']
+
+    sourceSets.test.resources.srcDirs = ['src/test/resources', 'src/test/java']
+
+    test.systemProperty("java.awt.headless", "true")
+
     repositories {
-        mavenRepo urls: 'http://maven.springframework.org/release'
-        mavenRepo urls: 'http://maven.springframework.org/milestone'
-        mavenRepo urls: 'http://maven.springframework.org/snapshot'
-        mavenCentral()
-    }
-}
-
-
-// -----------------------------------------------------------------------------
-// Create collections of subprojects - each will receive their own configuration
-// - all subprojects that start with spring-social-* are 'java projects'
-// - documentation-related subprojects are not collected here
-//
-// @see configure(*) sections below
-// -----------------------------------------------------------------------------
-
-javaprojects = subprojects.findAll { project ->
-    project.path.startsWith(':spring-social-')
-}
-
-// -----------------------------------------------------------------------------
-// Configuration for all java subprojects
-// -----------------------------------------------------------------------------
-configure(javaprojects) {
-
-    apply plugin: 'java' // tasks for conventional java lifecycle
-    apply plugin: 'maven' // `gradle install` to push jars to local .m2 cache
-    apply plugin: 'eclipse' // `gradle eclipse` to generate .classpath/.project
-    apply plugin: 'idea' // `gradle idea` to generate .ipr/.iml
-
-    // set up dedicated directories for jars and source jars.
-    // this makes it easier when putting together the distribution
-    libsBinDir = new File(libsDir, 'bin')
-    libsSrcDir = new File(libsDir, 'src')
-
-    // add tasks for creating source jars and generating poms etc
-    apply from: "$buildSrcDir/maven-deployment.gradle"
-
-    // add tasks for finding and publishing .xsd files
-    apply from: "$buildSrcDir/schema-publication.gradle"
-
-    springSocialVersion = '1.0.0.RELEASE'
-    jacksonVersion = '1.8.5'
-    jspApiVersion = '2.1'
-    junitVersion = '4.9'
-    mockitoVersion = '1.8.5'
-    servletApiVersion = '2.5'
-    springVersion = '3.1.0.M2'
-
-    sourceSets {
-        main {
-            resources {
-                srcDirs = ['src/main/java']
-            }
-        }
-        test {
-            resources {
-                srcDirs = ['src/test/java']
-            }
-        }
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenLocal()
     }
 
-    // dependencies that are common across all java projects
     dependencies {
-        testCompile "junit:junit:$junitVersion"
+        testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+        testCompile "junit:junit-dep:$junitVersion"
         testCompile "org.mockito:mockito-all:$mockitoVersion"
         testCompile "org.springframework:spring-test:$springVersion"
+
     }
 
-    // enable all compiler warnings (GRADLE-1077)
-    [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:all']
+    // servlet-api (2.5) and tomcat-servlet-api (3.0) classpath entries should not be
+    // exported to dependent projects in Eclipse to avoid false compilation errors due
+    // to changing APIs across these versions
+    eclipse.classpath.file.whenMerged { classpath ->
+        classpath.entries.findAll { entry -> entry.path.contains('servlet-api') }*.exported = false
 
-    // generate .classpath files without GRADLE_CACHE variable (GRADLE-1079)
-    eclipseClasspath.variables = [:]
+        // When the root project's name is the same as a dependency project's name, the name ends
+        // up being duplicated in the classpath entry. For example a dependency on "spring-social-foursquare"
+        // would have a path of "/spring-social-foursquare-spring-social-foursquare".
+        // The following lines set the path properly in that case.
+        classpath.entries.findAll { entry -> 
+            if (entry.path.equals("/" + rootProject.name + "-" + rootProject.name)) {
+                entry.path = "/" + rootProject.name;
+            }
+        }
+    }
 }
 
+ext.javadocLinks = [
+    "http://docs.jboss.org/jbossas/javadoc/4.0.5/connector"
+] as String[]
 
-// -----------------------------------------------------------------------------
-// Configuration for each individual core java subproject
-//
-// @see configure(javaprojects) above for general config
-// -----------------------------------------------------------------------------
+configure(subprojects - docProjects) { subproject ->
+    apply from: "${rootProject.projectDir}/publish-maven.gradle"
+
+    jar {
+        manifest.attributes['Implementation-Title'] = subproject.name
+        manifest.attributes['Implementation-Version'] = subproject.version
+
+        from("${rootProject.projectDir}/src/dist") {
+            include "license.txt"
+            include "notice.txt"
+            into "META-INF"
+            expand(copyright: new Date().format('yyyy'), version: project.version)
+        }
+    }
+
+    javadoc {
+        options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+        options.author = true
+        options.header = project.name
+        //options.overview = "${projectDir}/src/main/java/overview.html"
+    }
+
+    task sourcesJar(type: Jar, dependsOn:classes) {
+        classifier = 'sources'
+        from sourceSets.main.allJava
+    }
+
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    configurations {
+        springReleaseTestRuntime.extendsFrom testRuntime
+        springSnapshotTestRuntime.extendsFrom testRuntime
+    }
+
+    // Test against latest Spring Framework release
+    configurations.springReleaseTestRuntime {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.springframework') {
+                details.useVersion springReleaseVersion
+            }
+        }
+    }
+
+    // Test against latest Spring Framework snapshot
+    configurations.springSnapshotTestRuntime {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.springframework') {
+                details.useVersion springSnapshotVersion
+            }
+        }
+    }
+
+    task springReleaseTest(type: Test) {
+        classpath = sourceSets.test.output + sourceSets.main.output + configurations.springReleaseTestRuntime
+        getReports().getJunitXml().setDestination(file("$buildDir/spring-release-test-results/"))
+        getReports().getHtml().setDestination(file("$buildDir/reports/spring-release-tests/"))
+    }
+    check.dependsOn springReleaseTest
+
+    task springSnapshotTest(type: Test) {
+        classpath = sourceSets.test.output + sourceSets.main.output + configurations.springSnapshotTestRuntime
+        getReports().getJunitXml().setDestination(file("$buildDir/spring-snapshot-test-results/"))
+        getReports().getHtml().setDestination(file("$buildDir/reports/spring-snapshot-tests/"))
+    }
+    check.dependsOn springSnapshotTest
+
+    configure([test, springReleaseTest, springSnapshotTest]) {
+        systemProperties['springVersion'] = springVersion
+    }
+}
+
 
 project('spring-social-foursquare') {
-    description = 'foursquare API'
+    description = 'Foursquare API'
     dependencies {
-        compile "org.springframework.social:spring-social-core:$springSocialVersion"
-        compile "org.codehaus.jackson:jackson-mapper-asl:$jacksonVersion"
-        compile ("javax.servlet:servlet-api:$servletApiVersion") { provided = true }
-        compile ("javax.servlet.jsp:jsp-api:$jspApiVersion") { provided = true }
-        testCompile "org.springframework.social:spring-social-test:$springSocialVersion"
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Configuration for the docs subproject
-// -----------------------------------------------------------------------------
-project('docs') {
-    apply plugin: 'base'
-    task api(type: Javadoc) {
-        source javaprojects.collect { project ->
-            project.sourceSets.main.allJava
+        compile ("org.springframework.social:spring-social-core:$springSocialVersion")
+        compile ("org.springframework.social:spring-social-config:$springSocialVersion")
+        compile ("org.springframework.social:spring-social-security:$springSocialVersion")
+        compile ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+        compile ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+        compile ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
+        compile ("javax.servlet:javax.servlet-api:$servletApiVersion"){
+            provided = true
         }
-        classpath = files(javaprojects.collect { project ->
-            project.sourceSets.main.compileClasspath
-        })
-        destinationDir = file("build/api")
+        testCompile ("org.springframework:spring-test:$springVersion")
+        testCompile ("commons-io:commons-io:2.4")
+       // testCompile group: 'org.springframework.social', name: 'spring-social-web', version:'$springSocialVersion', classifier:'tests'
+        testCompile ("org.springframework.social:spring-social-test:1.0.3.RELEASE")
+        testCompile ("org.springframework.social:spring-social-web:$springSocialVersion")
     }
 }
 
-apply from: "$buildSrcDir/dist.gradle"
-apply from: "$buildSrcDir/checks.gradle"
+dependencies {
+        compile ("org.springframework.social:spring-social-core:$springSocialVersion")
+        compile ("org.springframework.social:spring-social-config:$springSocialVersion")
+        compile ("org.springframework.social:spring-social-security:$springSocialVersion")
+        compile ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+        compile ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+        compile ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
+        compile ("javax.servlet:javax.servlet-api:$servletApiVersion"){
+            provided = true
+        }
+        testCompile ("org.springframework:spring-test:$springVersion")
+        testCompile ("commons-io:commons-io:2.4")
+        testCompile ("org.springframework.social:spring-social-test:1.0.3.RELEASE")
+        testCompile ("org.springframework.social:spring-social-web:$springSocialVersion")
+}
+
+/* project('spring-social-foursquare-web') { */
+/*     description = 'Foursquare Web' */
+/*     dependencies { */
+/*         compile ("org.springframework:spring-web:$springVersion") */
+/*         compile ("org.springframework:spring-webmvc:$springVersion") */
+/*         compile ("org.springframework.social:spring-social-core:$springSocialVersion", optional) */
+/*         compile project(':spring-social-foursquare', optional) */
+/*         compile ("org.springframework.security:spring-security-crypto:$springSecurityCryptoVersion", optional) */
+/*         compile ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion", optional) */
+/*         compile ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion", optional) */
+/*         compile ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion", optional) */
+/*         compile ("javax.servlet:javax.servlet-api:$servletApiVersion", provided) */
+/*         compile ("javax.servlet.jsp:javax.servlet.jsp-api:$jspApiVersion", provided) */
+/*         testCompile ("org.springframework:spring-test:$springVersion") */
+/*     } */
+/* } */
+

@@ -8,3 +8,8 @@ spring-social-core/src/test/java/exploration
 **/.project
 **/.settings
 **/bin
+out/
+*.iml
+*.ipr
+*.iws
+/bin/
