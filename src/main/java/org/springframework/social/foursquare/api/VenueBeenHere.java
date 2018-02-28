@@ -1,5 +1,8 @@
 package org.springframework.social.foursquare.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VenueBeenHere {
     private int count;
     private boolean marked;

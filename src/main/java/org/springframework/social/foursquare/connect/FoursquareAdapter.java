@@ -8,7 +8,6 @@ import org.springframework.social.connect.UserProfileBuilder;
 import org.springframework.social.foursquare.api.Foursquare;
 import org.springframework.social.foursquare.api.FoursquareUser;
 
-
 /**
  * Foursquare ApiAdapter implementation.
  */
@@ -27,7 +26,12 @@ public class FoursquareAdapter implements ApiAdapter<Foursquare> {
         FoursquareUser user = foursquare.userOperations().getUser();
         values.setProviderUserId(user.getId());
         values.setDisplayName(user.getFirstName() + " " + user.getLastName());
-        values.setImageUrl(user.getPhoto().getPrefix() + user.getPhoto().getSuffix());
+        values.setImageUrl(
+                String.format("%s%s%s",
+                        user.getPhoto().getPrefix(),
+                        "128x128",
+                        user.getPhoto().getSuffix()
+                ));
     }
 
     public UserProfile fetchUserProfile(Foursquare instagram) {

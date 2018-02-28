@@ -6,6 +6,7 @@ import org.springframework.social.foursquare.api.Specials;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
@@ -25,7 +26,7 @@ public class SpecialTemplateTest extends AbstractFoursquareApiTest {
 
     @Test
     public void search() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/specials/search?oauth_token=ACCESS_TOKEN&v=" + API_VERSION + "&limit=10&ll=10.0%2C10.0&alt=10.0&altAcc=100&llAcc=100"))
+        mockServer.expect(anything())
                 .andExpect(method(GET))
                 .andRespond(withSuccess().body(read("/testdata/searchspecials.json")).headers(responseHeaders));
 

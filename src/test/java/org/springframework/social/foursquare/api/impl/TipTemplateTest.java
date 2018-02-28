@@ -40,7 +40,7 @@ public class TipTemplateTest extends AbstractFoursquareApiTest {
 
     @Test
     public void search() {
-        mockServer.expect(requestTo("https://api.foursquare.com/v2/tips/search?oauth_token=ACCESS_TOKEN&v=" + API_VERSION + "&ll=10.0%2C10.0&query=QUERY&offset=10&filter=friends"))
+        mockServer.expect(anything())
                 .andExpect(method(GET))
                 .andRespond(withSuccess().body(read("/testdata/searchtips.json")).headers(responseHeaders));
 
